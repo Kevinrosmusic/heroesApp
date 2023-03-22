@@ -89,4 +89,9 @@ export class AddFormComponent implements OnInit {
 			duration: 2500,
 		});
 	}
+
+	changeSuperHeroe() {
+		let format = String(this.addForm.get('superhero')?.value).toUpperCase();
+		this.addForm.get('superhero')?.setValue(format);
+	}
 }

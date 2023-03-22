@@ -1,0 +1,16 @@
+<div style="display: flex">
+	<h1>Listado de Heroes</h1>
+	<span class="spacer"></span>
+	<app-input-search></app-input-search>
+</div>
+<mat-divider></mat-divider>
+<br />
+
+<div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="20">
+	<div fxFlex="30" fxFlex.gt-lg="20" fxFlex.gt-sm="20" *ngFor="let heroe of heroes | paginate : pageSize : pageNumber">
+		<app-heroe-tarjeta [heroe]="heroe"></app-heroe-tarjeta>
+	</div>
+</div>
+<div style="margin-top: 20px">
+	<mat-paginator [length]="heroes.length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="handlePage($event)"></mat-paginator>
+</div>

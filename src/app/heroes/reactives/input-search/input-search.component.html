@@ -1,0 +1,10 @@
+<mat-form-field class="example-full-width" appearance="fill">
+	<mat-label>Buscar...</mat-label>
+	<input type="text" placeholder="Ingrese un heroe" aria-label="Buscar..." matInput [matAutocomplete]="auto" id="search" [formControl]="search" (input)="buscando()" />
+	<mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="opcionSeleccionada($event)">
+		<mat-option *ngFor="let heroe of heroes" [value]="heroe">
+			{{ heroe.superhero }}
+		</mat-option>
+		<mat-option value="" *ngIf="heroes.length === 0 && search.value!.trim().length > 0"> No se encontro nada con el termino {{ search.value }} </mat-option>
+	</mat-autocomplete>
+</mat-form-field>

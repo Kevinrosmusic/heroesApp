@@ -5,16 +5,16 @@
 </mat-grid-list>
 
 <ng-template #divHeroe>
-	<div fxLayout="row" fxLayout.xs="column" fxLayoutGap="30">
-		<div fxFlex="50">
+	<div fxLayout="row" fxLayout.xs="column" fxLayoutGap="30" fxLayoutAlign="center">
+		<div fxFlex="20">
 			<h1>
 				{{ heroe.superhero }} <small>- {{ heroe.alter_ego }}</small>
 			</h1>
 			<mat-divider></mat-divider>
 			<br />
-			<img [src]="heroe | imagen" alt="" />
+			<img [src]="heroe | imagen" alt="" width="100%" />
 		</div>
-		<div fxFlex="50">
+		<div fxFlex="20">
 			<h1>{{ heroe.publisher }}</h1>
 			<mat-divider></mat-divider>
 			<mat-list>

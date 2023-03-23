@@ -2,6 +2,7 @@ import { Component, Input } from "@angular/core";
 import { Heroe } from "../../interfaces/heroes.interfaces";
 import { HeroesService } from "../../services/heroes.service";
 import Swal from "sweetalert2";
+import { Router } from "@angular/router";
 
 @Component({
 	selector: "app-heroe-tarjeta",
@@ -15,7 +16,7 @@ import Swal from "sweetalert2";
 	],
 })
 export class HeroeTarjetaComponent {
-	constructor(private heroesService: HeroesService) {}
+	constructor(private heroesService: HeroesService, private router: Router) {}
 	@Input() heroe!: Heroe;
 
 	delete(id: string) {
@@ -30,7 +31,12 @@ export class HeroeTarjetaComponent {
 		}).then((result) => {
 			if (result.isConfirmed) {
 				this.heroesService.deleteHeroe(this.heroe.id!).subscribe();
-				Swal.fire("Eliminado!", "El registro ha sido eliminado con exito", "success");
+
+				Swal.fire("Eliminado!", "El registro ha sido eliminado con exito", "success").then((res) => {
+					if (res.isConfirmed) {
+						location.reload();
+					}
+				});
 			}
 		});
 	}

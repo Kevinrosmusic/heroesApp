@@ -17,7 +17,7 @@
 	</mat-card-content>
 
 	<mat-card-actions>
-		<button mat-button [routerLink]="['/heroes/editar/', heroe.id]" color="info">Editar</button>
-		<button mat-button color="warn" (click)="delete(heroe.id!)">Eliminar</button>
+		<button mat-raised-button [routerLink]="['/heroes/editar/', heroe.id]" color="primary">Editar</button>
+		<button mat-raised-button color="warn" (click)="delete(heroe.id!)" style="margin-left: 10px">Eliminar</button>
 	</mat-card-actions>
 </mat-card>

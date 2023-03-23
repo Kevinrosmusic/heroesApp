@@ -8,11 +8,11 @@
 			</button>
 		</mat-toolbar>
 		<mat-nav-list>
-			<a routerLink="./listado" mat-list-item>
+			<a routerLink="./listado" mat-list-item (click)="sidenav.toggle()">
 				<mat-icon matListItemIcon>label</mat-icon>
 				<span>Listado Heroes</span>
 			</a>
-			<a routerLink="./agregar" mat-list-item>
+			<a routerLink="./agregar" mat-list-item (click)="sidenav.toggle()">
 				<mat-icon matListItemIcon>add</mat-icon>
 				<span>Agregar Heroes</span>
 			</a>

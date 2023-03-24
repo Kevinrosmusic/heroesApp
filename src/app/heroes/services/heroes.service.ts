@@ -1,5 +1,5 @@
 import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
+import { Injectable, EventEmitter } from "@angular/core";
 import { Heroe } from "../interfaces/heroes.interfaces";
 import { Observable } from "rxjs";
 import { environment } from "../../../environments/environment";
@@ -8,6 +8,10 @@ import { environment } from "../../../environments/environment";
 	providedIn: "root",
 })
 export class HeroesService {
+	public isDeleted: EventEmitter<any> = new EventEmitter();
+	public heroesBase: Heroe[] = [];
+	public heroesShow: Heroe[] = [];
+	
 	private baseUrl: string = environment.baseUrl;
 
 	constructor(private http: HttpClient) {}

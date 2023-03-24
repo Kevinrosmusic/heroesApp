@@ -16,7 +16,7 @@ import { Router } from "@angular/router";
 	],
 })
 export class HeroeTarjetaComponent {
-	constructor(private heroesService: HeroesService, private router: Router) {}
+	constructor(public heroesService: HeroesService, private router: Router) {}
 	@Input() heroe!: Heroe;
 
 	delete(id: string) {
@@ -30,12 +30,26 @@ export class HeroeTarjetaComponent {
 			confirmButtonText: "Si, borrar!",
 		}).then((result) => {
 			if (result.isConfirmed) {
-				this.heroesService.deleteHeroe(this.heroe.id!).subscribe();
-
-				Swal.fire("Eliminado!", "El registro ha sido eliminado con exito", "success").then((res) => {
-					if (res.isConfirmed) {
-						location.reload();
+				this.heroesService.deleteHeroe(this.heroe.id!).subscribe((resp) => {
+					let index: number = 0;
+					for (const key in this.heroesService.heroesBase) {
+						if (Object.prototype.hasOwnProperty.call(this.heroesService.heroesBase, key)) {
+							const item = this.heroesService.heroesBase[key];
+							if (item.id === this.heroe.id) {
+								index = Number(key);
+								break;
+							}
+						}
 					}
+					this.heroesService.heroesBase.splice(index, 1);
+					this.heroesService.isDeleted.emit({
+						deleted: true,
+					});
+					
+					const Msg = Swal.mixin({
+						timer: 3000
+					})
+					Msg.fire("Eliminado!", "El registro ha sido eliminado con exito", "success");
 				});
 			}
 		});
